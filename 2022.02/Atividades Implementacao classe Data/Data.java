@@ -4,48 +4,56 @@ public class Data {
     private int ano;
 
 
-    public Data(int dia, int mes, int ano){
-        this.setDia(dia);
-        this.setMes(mes);
-        this.setAno(ano);
+    public Data(int dia, int mes, int ano) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
 
-
-        if (ano < 1900 || ano > 2022) {
-            this.ano = 01;
+        if (isValida() == false){
             this.dia = 01;
-            this.mes = 0001;
-        }
-        if (mes < 1 || mes > 12) {
-            this.ano = 01;
-            this.dia = 01;
-            this.mes = 0001;
-        }
-
-        if (this.mes == 01 || this.mes == 03 || this.mes == 05 || this.mes == 07 || this.mes == 8 || this.mes == 10 || this.mes ==12) {
-
-            if (this.dia < 01 || this.dia > 31) {
-                this.ano = 01;
-                this.dia = 01;
-                this.mes = 0001;
-            }
-        }
-        if (this.mes == 04 || this.mes == 06 || this.mes == 9 || this.mes == 11) {
-
-            if (this.dia < 01 || this.dia > 30){
-                this.ano = 01;
-                this.dia = 01;
-                this.mes = 0001;
-            }
-        }
-        if (mes == 2) {
-
-            if (this.dia < 01 || this.dia > 29){
-                this.ano = 01;
-                this.dia = 01;
-                this.mes = 0001;
-            }
+            this.mes = 01;
+            this.ano = 0001;
         }
     }
+    public boolean  isValida(){
+    return (isAno() && isMes() && isDia());
+    }
+
+    public boolean isAno(){
+        if (ano < 1900 || ano > 2022) {
+
+                return false;
+        }
+        return true;
+    }
+
+    public boolean isMes(){
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
+        return true;
+    }
+    public boolean isDia(){
+        if (this.mes == 01 || this.mes == 03 || this.mes == 05 || this.mes == 07 || this.mes == 8 || this.mes == 10 || this.mes ==12) {
+            if (this.dia < 01 || this.dia > 31) {
+                return false;
+            }
+        }
+
+        if (this.mes == 04 || this.mes == 06 || this.mes == 9 || this.mes == 11) {
+            if (this.dia < 01 || this.dia > 30){
+                return false;
+            }
+        }
+
+        if (mes == 2) {
+            if (this.dia < 01 || this.dia > 29){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public int getDia() {
         return dia;
@@ -63,13 +71,6 @@ public class Data {
         this.mes = mes;
     }
 
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
     public void parametro(){
         boolean menos = false;
         boolean mais = false;
@@ -101,16 +102,19 @@ public class Data {
 
         if (zero == true){
             if (this.dia != 25){
-                if (this.dia < 25){
-                    menos = true;
-                    zero = false;
-                }
-                if (this.dia > 25){
-                    menos = true;
-                    zero = false;
+                menos = false;
+                zero = true;
+            }
+            if (this.dia <= 24){
+                menos = true;
+                zero = false;
+            }
+            if (this.dia > 25){
+                mais = true;
+                zero = false;
                 }
             }
-        }
+
 
         if (zero == true)
             System.out.println("0");
