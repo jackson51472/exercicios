@@ -2,7 +2,7 @@ public class Programa {
     public static void main(String[] args) {
         Data d1 = new Data(24,04,2000);
         Data d2 = new Data(25,04,2002);
-        Data d3 = new Data(26,04,2021);
+        Data d3 = new Data(26,04,2002);
         System.out.println("===========================================================================================");
         d1.normalData();
         d2.normalData();
