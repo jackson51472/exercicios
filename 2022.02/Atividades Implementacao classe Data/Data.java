@@ -3,6 +3,8 @@ public class Data {
     private int mes;
     private int ano;
 
+    private String[] nomeMes = {"Janeiro" ,"Fevereiro" ,"Março" ,"Abril" ,"Maio" ,"Junho" ,"Julho" ,"Agosto" ,"Setembro" ,"Outubro" ,"Novembro" ,"Dezembro"};
+
 
     public Data(int dia, int mes, int ano) {
         this.dia = dia;
@@ -71,29 +73,29 @@ public class Data {
         this.mes = mes;
     }
 
-    public void parametro(){
+    public void parametro(Data x){
         boolean menos = false;
         boolean mais = false;
         boolean zero = true;
 
-        if (this.ano != 2002){
-            if (this.ano < 2002){
+        if (this.ano != x.ano){
+            if (this.ano < x.ano){
                 menos = true;
                 zero = false;
             }
-            if (this.ano > 2002){
+            if (this.ano > x.ano){
                 mais = true;
                 zero = false;
             }
         }
 
         if (zero == true) {
-            if (this.mes != 04){
-                if (this.mes < 04){
+            if (this.mes != x.mes){
+                if (this.mes < x.mes){
                     menos = true;
                     zero = false;
                 }
-                if (this.mes > 04){
+                if (this.mes > x.mes){
                     mais = true;
                     zero = false;
                 }
@@ -101,15 +103,15 @@ public class Data {
         }
 
         if (zero == true){
-            if (this.dia != 25){
+            if (this.dia != x.dia){
                 menos = false;
                 zero = true;
             }
-            if (this.dia <= 24){
+            if (this.dia < x.dia){
                 menos = true;
                 zero = false;
             }
-            if (this.dia > 25){
+            if (this.dia > x.dia){
                 mais = true;
                 zero = false;
                 }
@@ -136,6 +138,10 @@ public class Data {
     }
     public void normalData(){
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
+    }
+
+    public String mesExtenso (Data x){
+        return nomeMes[x.mes - 1];
     }
 
 }
