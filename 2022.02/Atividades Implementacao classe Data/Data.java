@@ -3,7 +3,7 @@ public class Data {
     private int mes;
     private int ano;
 
-    private String[] nomeMes = {"Janeiro" ,"Fevereiro" ,"Março" ,"Abril" ,"Maio" ,"Junho" ,"Julho" ,"Agosto" ,"Setembro" ,"Outubro" ,"Novembro" ,"Dezembro"};
+    private static String[] nomeMes = {"Janeiro" ,"Fevereiro" ,"Março" ,"Abril" ,"Maio" ,"Junho" ,"Julho" ,"Agosto" ,"Setembro" ,"Outubro" ,"Novembro" ,"Dezembro"};
 
 
     public Data(int dia, int mes, int ano) {
@@ -49,8 +49,15 @@ public class Data {
         }
 
         if (mes == 2) {
-            if (this.dia < 01 || this.dia > 29){
-                return false;
+            if (isBissexto() == true){
+                if (this.dia < 01 || this.dia > 29){
+                    return false;
+                }
+            }
+            if (isBissexto() == false){
+                if (this.dia < 01 || this.dia > 28){
+                    return false;
+                }
             }
         }
         return true;
@@ -126,15 +133,18 @@ public class Data {
             System.out.println("1");
 
     }
-    public void isBissexto(){
+    public boolean isBissexto(){
         int bi;
 
         bi = this.ano % 4;
 
-        if (bi != 0)
-            System.out.println("Não Bissexto.");
+        if (bi != 0){
+            System.out.println("Não é Bissexto.");
+            return false;
+        }
         else
             System.out.println("Bissexto.");
+            return true;
     }
     public void normalData(){
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
